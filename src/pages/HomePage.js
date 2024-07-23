@@ -359,7 +359,7 @@ const HomePage = ({ web3, account, adminAddress, handleShowModal }) => {
       </div>
       <footer className="footer container-fluid">
         <div className="container text-center">
-          <p>&copy; 2024 DesignHub. All rights reserved.</p>
+          <p>&copy; 2024 Disbyte. All rights reserved.</p>
         </div>
       </footer>
     </div>
