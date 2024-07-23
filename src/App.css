@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.home {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.home h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.home p {
+  font-size: 1.2em;
+}
+
+

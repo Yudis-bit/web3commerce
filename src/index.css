@@ -1,0 +1,305 @@
+/* Global Styles */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: #1f1f1f;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.navbar .container-fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.judul {
+  text-align: center;
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #00bfa5;
+}
+
+.btn-login {
+  background-color: #00bfa5;
+  color: #ffffff;
+  border: 2px solid #00bfa5;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #ffffff;
+  color: #00bfa5;
+}
+
+.btn-logout {
+  background-color: #ff5252;
+  color: #ffffff;
+  border: 2px solid #ff5252;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-logout:hover {
+  background-color: #ffffff;
+  color: #ff5252;
+}
+
+.hero-section {
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  color: white;
+  padding: 100px 0;
+  margin: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-section .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero-section .display-4 {
+  font-weight: bold;
+}
+
+.hero-section .lead {
+  font-size: 1.25em;
+}
+
+.hero-section .btn-primary {
+  background-color: #00bfa5;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hero-section .btn-primary:hover {
+  background-color: #ffffff;
+  color: #00bfa5;
+}
+
+.features-section {
+  background-color: #ffffff;
+  padding: 50px 0;
+}
+
+.features-section .icon-square {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9ecef;
+  border-radius: 0.75rem;
+}
+
+.features-section .text-body-emphasis {
+  font-weight: 700;
+}
+
+.features-section h3 {
+  margin-bottom: 1rem;
+}
+
+.products-section {
+  background-color: #ffffff;
+  padding: 50px 0;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column; /* Pastikan flex-direction adalah column */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Pastikan content di card-body tidak di-center secara vertikal */
+  text-align: center; /* Pastikan teks tidak di-center secara horizontal */
+}
+
+.card-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.card-text {
+  font-size: 1em;
+  color: #6c757d;
+  flex: 1; /* Membuat teks card memenuhi space yang ada */
+}
+
+.footer {
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #00bfa5;
+}
+
+.testimonials {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.testimonials .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.testimonial {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial h4 {
+  margin-top: 15px;
+  font-size: 1.2em;
+  color: #343a40;
+}
+
+.testimonial p {
+  font-size: 1em;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+.trusted-brands {
+  background-color: #ffffff;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.trusted-brands p {
+  margin-bottom: 20px;
+  color: #6c757d;
+}
+
+.brands-logos img {
+  max-height: 50px;
+  margin: 0 15px;
+}
+
+.wallet-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.wallet-button:hover {
+  background-color: #f0f0f0;
+}
+
+.wallet-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
