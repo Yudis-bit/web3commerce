@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Projek E-commerce yang login dan payments menggunakan wallet metamask pada jaringan polygon dengan token matic
+
 ## Available Scripts
 
 In the project directory, you can run:
