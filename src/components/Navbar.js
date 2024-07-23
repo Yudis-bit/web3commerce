@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ModalLogin from './ModalLogin';
 import '../index.css';
+import logo from '../images/logo.png'; // Sesuaikan path logo sesuai dengan struktur proyek Anda
 
 const adminWallet = "0xb9030ab08Fb47b310aBe3D4Be7680807C10deba5";
 
@@ -35,7 +36,10 @@ const Navbar = ({ account, onLoginClick, onLogoutClick }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand">DesignHub</Link>
+          <Link to="/" className="navbar-brand d-flex align-items-center">
+            <img src={logo} alt="Logo" style={{ width: '35px', height: '35px', marginRight: '10px' }} />
+            Disbyte
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

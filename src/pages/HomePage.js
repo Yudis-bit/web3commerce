@@ -21,44 +21,56 @@ import product18 from '../images/18.png';
 import product19 from '../images/19.png';
 import product20 from '../images/20.png';
 
-const HomePage = ({ web3, account, adminAddress }) => {
+const HomePage = ({ web3, account, adminAddress, handleShowModal }) => {
   const handleBuy = async () => {
     if (!web3 || !account) {
-      console.error("Web3 or account not found");
+      handleShowModal(); // Tampilkan modal login jika belum login
       return;
     }
 
-    const amount = web3.utils.toWei('5', 'ether'); // 5 MATIC in Wei
-
-    console.log('Initiating transaction');
-    console.log('From account:', account);
-    console.log('To account:', adminAddress);
-    console.log('Amount (in Wei):', amount);
+    const amount = web3.utils.toWei('5', 'ether'); // 5 MATIC dalam Wei
 
     try {
+      const balance = await web3.eth.getBalance(account);
+      const balanceInMatic = web3.utils.fromWei(balance, 'ether'); // Konversi saldo dari Wei ke MATIC
+
+      if (parseFloat(balanceInMatic) < 5) {
+        console.error("Saldo MATIC tidak mencukupi");
+        alert('Saldo MATIC tidak mencukupi untuk melakukan transaksi!');
+        return;
+      }
+
+      console.log('Memulai transaksi');
+      console.log('Dari akun:', account);
+      console.log('Ke akun:', adminAddress);
+      console.log('Jumlah (dalam Wei):', amount);
+
       const transactionParameters = {
         from: account,
         to: adminAddress,
         value: amount,
+        gas: web3.utils.toHex(21000),
+        gasPrice: web3.utils.toHex(web3.utils.toWei('20', 'gwei')),
       };
 
-      console.log('Transaction parameters:', transactionParameters);
+      console.log('Parameter transaksi:', transactionParameters);
 
       await web3.eth.sendTransaction(transactionParameters);
-      alert('Transaction successful!');
+      alert('Transaksi berhasil!');
     } catch (error) {
-      console.error("Transaction failed", error);
-      alert('Transaction failed! Check console for details.');
+      console.error("Transaksi gagal", error);
+      alert('Transaksi gagal! Periksa konsol untuk detail.');
     }
   };
+
 
   return (
     <div className="home container-fluid">
       <div className="hero-section container-fluid">
         <div className="container text-center">
-          <h1 className="display-4">Welcome to DesignHub</h1>
+          <h1 className="display-4">Welcome to DisByte</h1>
           <p className="lead">The decentralized marketplace for unique designs</p>
-          <a className="btn btn-primary btn-lg" href="/products" role="button">Explore Designs</a>
+          <a className="btn btn-primary btn-lg" href="/" role="button">Explore Designs</a>
         </div>
       </div>
       <div className="products-section mt-5 container-fluid">
@@ -71,7 +83,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Sci-fi</h5>
                   <p className="card-text">a sci-fi male adventurer pilot in a cinematic pose in front of a massive</p>
-                  <a className="btn btn-primary" onClick={handleBuy}>Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -81,7 +93,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Cyborg</h5>
                   <p className="card-text">Clocks ticking, time and tide, futuristic cyborg modern technology</p>
-                  <a className="btn btn-primary"  >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -91,7 +103,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Superhero</h5>
                   <p className="card-text">a white American male superhero in a superhero outfit with short red hair </p>
-                  <a className="btn btn-primary"  >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -101,7 +113,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Barbarian</h5>
                   <p className="card-text">male satyr barbarian character from dungeons and dragons, aries horns</p>
-                  <a className="btn btn-primary"  >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -113,7 +125,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title"> Nature and Technology</h5>
                   <p className="card-text">depicts the face of a woman covered by both organic elements</p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -123,7 +135,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">NSX concept car</h5>
                   <p className="card-text">Combine A 2040 futuristic wide-body Acura NSX concept car with a 2025</p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -133,7 +145,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Avant-Garde Cyber Couture</h5>
                   <p className="card-text">Model adorned in a futuristic and avant-garde outfit that combines</p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -143,7 +155,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Vibrant Water Splash</h5>
                   <p className="card-text">The splash is beautifully illuminated with vibrant colors of purple</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -155,7 +167,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Ancient Egyptian Cat</h5>
                   <p className="card-text"> a black cat adorned with ornate gold jewelry, including a collar, necklaces</p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -165,7 +177,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Vintage Car in Bloom</h5>
                   <p className="card-text">showcases a classic red convertible car parked on a street</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -175,7 +187,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Monks at the Monastery</h5>
                   <p className="card-text">group of monks in red robes walking towards a distant monastery</p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -185,7 +197,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Regal Dinosaur</h5>
                   <p className="card-text">This whimsical and imaginative image depicts a dinosaur dressed</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -197,7 +209,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Abstract Pink and Black</h5>
                   <p className="card-text">Modern abstract painting with horizontal stripes in varying shades</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -207,7 +219,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Neo-Gothic Cat Lady</h5>
                   <p className="card-text">This vibrant, comic-style illustration portrays a young woman </p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -217,7 +229,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Futuristic Corridor</h5>
                   <p className="card-text">a mesmerizing corridor with a blue and white checkered pattern</p>
-                  <a className="btn btn-primary">Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -227,7 +239,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Neon Musical Note</h5>
                   <p className="card-text">The vibrant pink and purple hues of the neon light create a striking </p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -239,7 +251,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Gourmet Mint Chocolate</h5>
                   <p className="card-text">This mouth-watering image showcases a stack of dark chocolate</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -249,7 +261,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Sunset Over the Fields</h5>
                   <p className="card-text">This picturesque image captures a serene agricultural landscape</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -259,7 +271,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">City Under Siege</h5>
                   <p className="card-text">This dramatic image depicts a city engulfed in chaos as helicopters</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -269,7 +281,7 @@ const HomePage = ({ web3, account, adminAddress }) => {
                 <div className="card-body">
                   <h5 className="card-title">Cycling in Paris</h5>
                   <p className="card-text">retro-styled illustration features two bicycles parked along a pink path</p>
-                  <a className="btn btn-primary" >Buy Now</a>
+                  <button className="btn btn-primary" onClick={handleBuy}>Buy Now</button>
                 </div>
               </div>
             </div>
