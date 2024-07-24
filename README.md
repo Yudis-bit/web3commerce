@@ -2,6 +2,9 @@
 
 ![License](https://img.shields.io/badge/license-MIT-brightgreen) ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 
+![Uploading image.png…]()
+
+
 ## Description
 Disbyte is a decentralized marketplace for unique designs. It allows users to explore and purchase digital products using MetaMask for authentication and transaction handling on the Polygon network.
 
